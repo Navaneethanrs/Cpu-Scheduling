@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPU Scheduling Simulator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <div class="glass-container">
+        <header>
+            <h1>CPU Scheduling <span>Simulator</span></h1>
+            <nav>
+                <button class="nav-btn active" data-target="home">Home</button>
+                <button class="nav-btn" data-target="fcfs">FCFS</button>
+                <button class="nav-btn" data-target="sjf">SJF</button>
+                <button class="nav-btn" data-target="priority">Priority</button>
+                <button class="nav-btn" data-target="rr">Round Robin</button>
+            </nav>
+        </header>
+
+        <main>
+            <!-- Home Section -->
+            <section id="home" class="view-section active">
+                <h2>Welcome to OS Scheduling Simulator</h2>
+                <p>Explore and visualize CPU scheduling algorithms with an interactive, premium experience.</p>
+                <div class="cards">
+                    <div class="card" onclick="document.querySelector('[data-target=fcfs]').click()">
+                        <h3>First Come First Serve</h3>
+                        <p>The simplest scheduling algorithm. Processes are dispatched according to their arrival time on the ready queue.</p>
+                    </div>
+                    <div class="card" onclick="document.querySelector('[data-target=sjf]').click()">
+                        <h3>Shortest Job First</h3>
+                        <p>Selects the waiting process with the smallest execution time to execute next.</p>
+                    </div>
+                    <div class="card" onclick="document.querySelector('[data-target=priority]').click()">
+                        <h3>Priority Scheduling</h3>
+                        <p>Each process is assigned a priority. Process with highest priority is to be executed first.</p>
+                    </div>
+                    <div class="card" onclick="document.querySelector('[data-target=rr]').click()">
+                        <h3>Round Robin</h3>
+                        <p>Each process is given a fixed time to execute, called a quantum.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Simulator Section (Dynamic) -->
+            <section id="simulator" class="view-section">
+                <div class="header-split">
+                    <h2 id="algo-title">Algorithm Name</h2>
+                    <div class="controls">
+                        <button id="reset-btn" class="btn btn-secondary">Reset</button>
+                        <button id="calculate-btn" class="btn btn-primary">Simulate</button>
+                    </div>
+                </div>
+
+                <div class="input-panel">
+                    <div class="input-group">
+                        <label for="arrival-time">Arrival Time</label>
+                        <input type="number" id="arrival-time" min="0" value="0">
+                    </div>
+                    <div class="input-group">
+                        <label for="burst-time">Burst Time</label>
+                        <input type="number" id="burst-time" min="1" value="1">
+                    </div>
+                    <div class="input-group" id="priority-group" style="display: none;">
+                        <label for="priority-val">Priority</label>
+                        <input type="number" id="priority-val" min="1" value="1">
+                    </div>
+                    <div class="input-group">
+                        <button id="add-process-btn" class="btn btn-accent">Add Process</button>
+                    </div>
+                </div>
+
+                <div class="input-group quantum-group" id="quantum-group" style="display: none; margin-top: 15px;">
+                    <label for="time-quantum">Time Quantum</label>
+                    <input type="number" id="time-quantum" min="1" value="2">
+                </div>
+
+                <div class="table-container">
+                    <table id="process-table">
+                        <thead>
+                            <tr>
+                                <th>Process ID</th>
+                                <th>Arrival Time</th>
+                                <th>Burst Time</th>
+                                <th class="priority-col" style="display:none;">Priority</th>
+                                <th>Completion Time</th>
+                                <th>Turn Around Time</th>
+                                <th>Waiting Time</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body">
+                            <!-- Process rows will appear here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="results-panel" id="results-panel" style="display: none;">
+                    <div class="averages">
+                        <div class="avg-box">
+                            <h4>Average TAT</h4>
+                            <div id="avg-tat">0.00 ms</div>
+                        </div>
+                        <div class="avg-box">
+                            <h4>Average WT</h4>
+                            <div id="avg-wt">0.00 ms</div>
+                        </div>
+                    </div>
+                    
+                    <h3 style="margin-top: 30px; margin-bottom: 15px;">Gantt Chart</h3>
+                    <div class="gantt-wrapper">
+                        <div id="gantt-chart" class="gantt-chart">
+                            <!-- Gantt blocks will appear here -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <p style="text-align: center; padding: 15px; margin-top: auto; color: var(--text-muted); font-size: 0.9rem; border-top: 1px solid var(--glass-border);">Developed by NAKSHATHRA</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
