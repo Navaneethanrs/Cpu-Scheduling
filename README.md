@@ -2,7 +2,7 @@
 
 A premium, interactive, and highly visual web application to simulate and understand classic CPU scheduling algorithms. Designed with a modern, glassmorphic dark interface, dynamic glowing effects, and smooth animations.
 
-Developed by **NAKSHATHRA**.
+Developed by **Navaneethan**.
 
 ---
 
